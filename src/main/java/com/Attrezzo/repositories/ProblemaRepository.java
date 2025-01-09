@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.Attrezzo.models.Cliente;
+import com.Attrezzo.models.Problema;
 
-public interface ClienteRepository extends JpaRepository<Cliente, UUID>{
+public interface ProblemaRepository extends JpaRepository<Problema, UUID>{
 
 }
