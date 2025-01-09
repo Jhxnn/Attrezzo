@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,9 +24,11 @@ public class Carro {
 	
 	private String modelo;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente clienteId;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_problema", referencedColumnName = "id")
 	private Problema problemaId;
 
