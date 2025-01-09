@@ -2,6 +2,8 @@ package com.Attrezzo.models;
 
 import java.util.UUID;
 
+import com.Attrezzo.models.enums.StatusCarro;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,17 @@ public class Carro {
 	@ManyToOne
 	@JoinColumn(name = "id_problema", referencedColumnName = "id")
 	private Problema problemaId;
+	
+	private StatusCarro status;
+
+	
+	public StatusCarro getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusCarro status) {
+		this.status = status;
+	}
 
 	public UUID getCarroId() {
 		return carroId;
