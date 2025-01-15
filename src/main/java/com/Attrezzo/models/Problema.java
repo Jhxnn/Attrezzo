@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +28,10 @@ public class Problema {
 	
 	@Column(name = "valor_base")
 	private double valorBase;
+	
+	@ManyToOne
+	@JoinColumn(name ="peca_utilizada", referencedColumnName = "id")
+	private Peca pecaUtilizada;
 
 	public UUID getProblemaId() {
 		return problemaId;
@@ -37,6 +43,14 @@ public class Problema {
 
 	public String getProblemaNome() {
 		return problemaNome;
+	}
+
+	public Peca getPecaUtilizada() {
+		return pecaUtilizada;
+	}
+
+	public void setPecaUtilizada(Peca pecaUtilizada) {
+		this.pecaUtilizada = pecaUtilizada;
 	}
 
 	public void setProblemaNome(String problemaNome) {

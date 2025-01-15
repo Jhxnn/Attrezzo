@@ -41,6 +41,8 @@ public class CarroService {
 		carro.setModelo(carroDto.modelo());
 		carro.setStatus(carroDto.status());
 		carro.setProblemaId(problemaService.findById(carroDto.problemaId()));
+		carro.setDataEntrada(carroDto.dataEntrada());
+		carro.setDataSaida(carroDto.dataSaida());
 		return carroRepository.save(carro);
 	}
 	public void deleteCarro(UUID id) {

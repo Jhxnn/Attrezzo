@@ -20,6 +20,9 @@ public class ProblemaService {
 	@Autowired
 	ProblemaRepository problemaRepository;
 	
+	@Autowired
+	PecaService pecaService;
+	
 	public Problema findById(UUID id) {
 		return problemaRepository.findById(id).orElseThrow(()-> new RuntimeException("cannot be found"));
 	}
@@ -36,6 +39,7 @@ public class ProblemaService {
 		problema.setDiasConserto(problemaDto.diasConserto());
 		problema.setProblemaNome(problemaDto.problemaNome());
 		problema.setValorBase(problemaDto.valorBase());
+		problema.setPecaUtilizada(pecaService.findById(problemaDto.pecaUtilizada()));
 		return problemaRepository.save(problema);
 	}
 	public void deleteProblema(UUID id) {

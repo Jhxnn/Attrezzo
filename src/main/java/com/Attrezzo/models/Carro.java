@@ -1,5 +1,6 @@
 package com.Attrezzo.models;
 
+import java.security.Timestamp;
 import java.util.UUID;
 
 import com.Attrezzo.models.enums.StatusCarro;
@@ -26,6 +27,10 @@ public class Carro {
 	
 	private String modelo;
 	
+	private Timestamp dataEntrada;
+	
+	private Timestamp dataSaida;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente clienteId;
@@ -39,6 +44,22 @@ public class Carro {
 	
 	public StatusCarro getStatus() {
 		return status;
+	}
+	
+	public Timestamp getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(Timestamp dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+
+	public Timestamp getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(Timestamp dataSaida) {
+		this.dataSaida = dataSaida;
 	}
 
 	public void setStatus(StatusCarro status) {
