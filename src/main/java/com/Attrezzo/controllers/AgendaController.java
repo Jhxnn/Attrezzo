@@ -1,5 +1,6 @@
 package com.Attrezzo.controllers;
 
+import java.security.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +35,10 @@ public class AgendaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Agenda> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(agendaService.findById(id));
+	}
+	@GetMapping("/data/{data}")
+	public ResponseEntity<List<Agenda>> findById(@PathVariable(name = "data")Timestamp data){
+		return ResponseEntity.status(HttpStatus.OK).body(agendaService.findByData(data));
 	}
 	@PostMapping
 	public ResponseEntity<Agenda> createAgenda(@RequestBody AgendaDto agendaDto){

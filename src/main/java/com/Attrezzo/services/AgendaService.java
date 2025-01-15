@@ -1,5 +1,6 @@
 package com.Attrezzo.services;
 
+import java.security.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +28,9 @@ public class AgendaService {
 	public List<Agenda> findAll(){
 		return agendaRepository.findAll();
 	}
+	public List<Agenda> findByData(Timestamp data){
+		return agendaRepository.findByData(data);
+	}
 	public Agenda createAgenda(AgendaDto agendaDto) {
 		var agenda = new Agenda();
 		BeanUtils.copyProperties(agendaDto, agenda);
@@ -42,4 +46,5 @@ public class AgendaService {
 		var agenda = findById(id);
 		agendaRepository.delete(agenda);
 	}
+	
 }
