@@ -25,7 +25,7 @@ public class CarroService {
 	ProblemaService problemaService;
 	
 	public Carro findById(UUID id) {
-		return carroRepository.findById(id).orElseThrow(()-> new RuntimeException("cannot be found"));
+		return carroRepository.findById(id).orElseThrow(()-> new RuntimeException("Nâo foi possivel encontrar"));
 	}
 	public List<Carro> findAll(){
 		return carroRepository.findAll();

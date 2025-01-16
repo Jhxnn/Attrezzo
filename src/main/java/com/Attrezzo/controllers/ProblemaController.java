@@ -36,8 +36,8 @@ public class ProblemaController {
 		return ResponseEntity.status(HttpStatus.OK).body(probService.findById(id));
 	}
 	@GetMapping("/comum")
-	public ResponseEntity<List<Problema>> commonProblems(){
-		return ResponseEntity.status(HttpStatus.OK).body(probService.commonProblems());
+	public ResponseEntity<List<Object[]>> mostCommonProblem(){
+		return ResponseEntity.status(HttpStatus.OK).body(probService.mostCommonProblem());
 	}
 	@PostMapping
 	public ResponseEntity<Problema> createProblema(@RequestBody ProblemaDto probDto){

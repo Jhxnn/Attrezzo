@@ -35,9 +35,19 @@ public class PecaController {
 	public ResponseEntity<Peca> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(pecaService.findById(id));
 	}
+	@GetMapping("/comum")
+	public ResponseEntity<List<Object[]>> mostCommonPart(){
+		return ResponseEntity.status(HttpStatus.OK).body(pecaService.mostCommonPart());
+	}
 	@PostMapping
 	public ResponseEntity<Peca> createPeca(@RequestBody PecaDto pecaDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(pecaService.createPeca(pecaDto));
+	}
+	
+	@PutMapping("/consumo/{id}/{qnt}")
+	public ResponseEntity<Peca> consumoPeca(@PathVariable(name = "id")UUID id,
+			@PathVariable(name = "qnt")int qnt){
+		return ResponseEntity.status(HttpStatus.CREATED).body(pecaService.consumoPeca(qnt, id));
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<Peca> updatePeca(@RequestBody PecaDto pecaDto,

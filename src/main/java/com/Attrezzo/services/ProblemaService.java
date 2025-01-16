@@ -30,7 +30,7 @@ public class ProblemaService {
 		return problemaRepository.findAll();
 	}
 	
-	public List<Problema> commonProblems(){
+	public List<Object[]> mostCommonProblem(){
 		return problemaRepository.findMostCommonProblems();
 	}
 	public Problema createProblema(ProblemaDto problemaDto) {
