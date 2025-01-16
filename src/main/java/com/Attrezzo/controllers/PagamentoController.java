@@ -35,6 +35,10 @@ public class PagamentoController {
 	public ResponseEntity<Pagamento> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(pagService.findById(id));
 	}
+	@GetMapping("/cliente/{clienteId}")
+	public ResponseEntity<List<Pagamento>> findByCliente(@PathVariable(name = "clienteId")UUID id){
+		return ResponseEntity.status(HttpStatus.OK).body(pagService.findByCliente(id));
+	}
 	@PostMapping
 	public ResponseEntity<Pagamento> createPagamento(@RequestBody PagamentoDto pagDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(pagService.createPagamento(pagDto));

@@ -27,6 +27,10 @@ public class PagamentoService {
 	public List<Pagamento> findAll(){
 		return pagRepository.findAll();
 	}
+	public List<Pagamento> findByCliente(UUID id){
+		var cliente = clienteService.findById(id);
+		return pagRepository.findByCliente(cliente);
+	}
 	public Pagamento createPagamento(PagamentoDto pagDto) {
 		var pagamento = new Pagamento();
 		BeanUtils.copyProperties(pagDto, pagamento);
