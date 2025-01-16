@@ -29,7 +29,7 @@ public class PecaService {
 	}
 	
 	public List<Object[]> mostCommonPart(){
-		return probRepository.findMostCommmonPart();
+		return probRepository.findMostCommonPart();
 	}
 	public Peca consumoPeca(int qnt, UUID id) {
 		var peca = findById(id);

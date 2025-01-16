@@ -11,5 +11,5 @@ import com.Attrezzo.models.Pagamento;
 public interface PagamentoRepository extends JpaRepository<Pagamento, UUID>{
 
 	
-	List<Pagamento> findByCliente(Cliente cliente);
+	List<Pagamento> findByClienteId(Cliente cliente);
 }

@@ -29,7 +29,7 @@ public class PagamentoService {
 	}
 	public List<Pagamento> findByCliente(UUID id){
 		var cliente = clienteService.findById(id);
-		return pagRepository.findByCliente(cliente);
+		return pagRepository.findByClienteId(cliente);
 	}
 	public Pagamento createPagamento(PagamentoDto pagDto) {
 		var pagamento = new Pagamento();

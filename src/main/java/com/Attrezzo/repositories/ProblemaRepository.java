@@ -10,16 +10,18 @@ import com.Attrezzo.models.Problema;
 
 public interface ProblemaRepository extends JpaRepository<Problema, UUID>{
 
-	@Query("SELECT p.nome_problema, COUNT(p) AS ocorrencias " +
-		       "FROM Problema p " +
-		       "GROUP BY p.nome_problema " +
-		       "ORDER BY ocorrencias DESC")
+	@Query("SELECT p.problemaNome, COUNT(p) AS quantidade " +
+	           "FROM Problema p " +
+	           "GROUP BY p.problemaNome " +
+	           "ORDER BY quantidade DESC")
 		List<Object[]> findMostCommonProblems();
+
 	
-	@Query("SELECT p.peca_utilizada, COUNT(p) AS ocorrencias " +
-		       "FROM Problema p " +
-		       "GROUP BY p.peca_utilizada " +
-		       "ORDER BY ocorrencias DESC")
-		List<Object[]> findMostCommmonPart();
+		@Query("SELECT p.pecaUtilizada, COUNT(p) AS quantidade " +
+		           "FROM Problema p " +
+		           "GROUP BY p.pecaUtilizada " +
+		           "ORDER BY quantidade DESC")
+			List<Object[]> findMostCommonPart();
+
 	
 }
