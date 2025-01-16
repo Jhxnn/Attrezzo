@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Attrezzo.dtos.CarroDto;
 import com.Attrezzo.models.Carro;
+import com.Attrezzo.models.enums.StatusCarro;
 import com.Attrezzo.services.CarroService;
 
 @RestController
@@ -35,6 +36,11 @@ public class CarroController {
 	public ResponseEntity<Carro> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(carroService.findById(id));
 	}
+	@GetMapping("/status/{status}")
+	public ResponseEntity<List<Carro>> findByStatus(@PathVariable(name = "status")StatusCarro status){
+		return ResponseEntity.status(HttpStatus.OK).body(carroService.findByStatus(status));
+	}
+	
 	@PostMapping
 	public ResponseEntity<Carro> createCarro(@RequestBody CarroDto carroDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(carroService.createCarro(carroDto));
@@ -44,6 +50,12 @@ public class CarroController {
 			@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.CREATED).body(carroService.updateCarro(carroDto, id));
 	}
+	@PutMapping("/status/{status}/{idCarro}")
+	public ResponseEntity<Carro> updateStatus(@PathVariable(name = "status")StatusCarro status,
+			@PathVariable(name = "idCarro")UUID id){
+		return ResponseEntity.status(HttpStatus.OK).body(carroService.updateStatus(status, id));
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Carro> deleteCarro(@PathVariable(name = "id")UUID id){
 		carroService.deleteCarro(id);

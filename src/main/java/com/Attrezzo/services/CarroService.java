@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Attrezzo.dtos.CarroDto;
 import com.Attrezzo.models.Carro;
+import com.Attrezzo.models.enums.StatusCarro;
 import com.Attrezzo.repositories.CarroRepository;
 
 @Service
@@ -29,11 +30,23 @@ public class CarroService {
 	public List<Carro> findAll(){
 		return carroRepository.findAll();
 	}
+	
+	public List<Carro> findByStatus(StatusCarro status){
+		return carroRepository.findByStatus(status);
+	}
 	public Carro createCarro(CarroDto carroDto) {
 		var carro = new Carro();
 		BeanUtils.copyProperties(carroDto, carro);
 		return carroRepository.save(carro);
 	}
+	
+	public Carro updateStatus(StatusCarro status, UUID idCarro) {
+		var carro = findById(idCarro);
+		carro.setStatus(status);
+		return carroRepository.save(carro);
+	}
+	
+	
 	public Carro updateCarro(CarroDto carroDto, UUID id) {
 		var carro = findById(id);
 		carro.setClienteId(clienteService.findById(carroDto.clienteId()));
