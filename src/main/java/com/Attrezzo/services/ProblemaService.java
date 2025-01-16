@@ -29,6 +29,10 @@ public class ProblemaService {
 	public List<Problema> findAll(){
 		return problemaRepository.findAll();
 	}
+	
+	public List<Problema> commonProblems(){
+		return problemaRepository.findMostCommonProblems();
+	}
 	public Problema createProblema(ProblemaDto problemaDto) {
 		var problema = new Problema();
 		BeanUtils.copyProperties(problemaDto, problema);

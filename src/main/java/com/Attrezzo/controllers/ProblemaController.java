@@ -35,6 +35,10 @@ public class ProblemaController {
 	public ResponseEntity<Problema> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(probService.findById(id));
 	}
+	@GetMapping("/comum")
+	public ResponseEntity<List<Problema>> commonProblems(){
+		return ResponseEntity.status(HttpStatus.OK).body(probService.commonProblems());
+	}
 	@PostMapping
 	public ResponseEntity<Problema> createProblema(@RequestBody ProblemaDto probDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(probService.createProblema(probDto));
