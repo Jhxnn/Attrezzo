@@ -1,5 +1,6 @@
 package com.Attrezzo.models;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -25,9 +26,19 @@ public class Pagamento {
 	private Cliente clienteId;
 	
 	private double valor;
+	
+	private LocalDate data;
 
 	public UUID getPagamentoId() {
 		return pagamentoId;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
 	public void setPagamentoId(UUID pagamentoId) {

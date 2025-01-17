@@ -1,9 +1,11 @@
 package com.Attrezzo.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,6 +40,15 @@ public class PagamentoController {
 	@GetMapping("/cliente/{clienteId}")
 	public ResponseEntity<List<Pagamento>> findByCliente(@PathVariable(name = "clienteId")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(pagService.findByCliente(id));
+	}
+	@GetMapping("/mensal/{data}")
+	public ResponseEntity<byte[]> relatorioMensal(@PathVariable(name = "data")LocalDate data){
+		byte[] pdfBytes = pagService.pdfPagamento(data);
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=relatorio.pdf");
+	    headers.add(HttpHeaders.CONTENT_TYPE, "application/pdf");
+	    return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
 	}
 	@PostMapping
 	public ResponseEntity<Pagamento> createPagamento(@RequestBody PagamentoDto pagDto){
