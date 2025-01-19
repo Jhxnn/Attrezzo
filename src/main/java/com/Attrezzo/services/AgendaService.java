@@ -22,6 +22,7 @@ public class AgendaService {
 	@Autowired
 	ClienteService clienteService;
 	
+	
 	public Agenda findById(UUID id) {
 		return agendaRepository.findById(id).orElseThrow(()-> new RuntimeException("cannot be found"));
 	}

@@ -20,6 +20,9 @@ import com.Attrezzo.models.Carro;
 import com.Attrezzo.models.enums.StatusCarro;
 import com.Attrezzo.services.CarroService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/carro")
 public class CarroController {
@@ -28,6 +31,8 @@ public class CarroController {
 	@Autowired
 	CarroService carroService;
 	
+	
+	@Operation()
 	@GetMapping
 	public ResponseEntity<List<Carro>> findAll(){
 		return ResponseEntity.status(HttpStatus.OK).body(carroService.findAll());
