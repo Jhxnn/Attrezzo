@@ -20,7 +20,6 @@ import com.Attrezzo.models.Carro;
 import com.Attrezzo.models.enums.StatusCarro;
 import com.Attrezzo.services.CarroService;
 
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
