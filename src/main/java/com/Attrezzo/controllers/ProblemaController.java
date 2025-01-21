@@ -19,6 +19,8 @@ import com.Attrezzo.dtos.ProblemaDto;
 import com.Attrezzo.models.Problema;
 import com.Attrezzo.services.ProblemaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/problema")
 public class ProblemaController {
@@ -27,27 +29,38 @@ public class ProblemaController {
 	@Autowired
 	ProblemaService probService;
 	
+	@Operation(description = "Lista todos os problemas")
 	@GetMapping
 	public ResponseEntity<List<Problema>> findAll(){
 		return ResponseEntity.status(HttpStatus.OK).body(probService.findAll());
 	}
+	
+	@Operation(description = "Lista problema pelo ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Problema> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(probService.findById(id));
 	}
+	
+	@Operation(description = "Lista os problemas mais comuns")
 	@GetMapping("/comum")
 	public ResponseEntity<List<Object[]>> mostCommonProblem(){
 		return ResponseEntity.status(HttpStatus.OK).body(probService.mostCommonProblem());
 	}
+	
+	@Operation(description = "Cria um problema")
 	@PostMapping
 	public ResponseEntity<Problema> createProblema(@RequestBody ProblemaDto probDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(probService.createProblema(probDto));
 	}
+	
+	@Operation(description = "Atualiza um problema")
 	@PutMapping("/{id}")
 	public ResponseEntity<Problema> updateProblema(@RequestBody ProblemaDto probDto,
 			@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.CREATED).body(probService.updateProblema(probDto, id));
 	}
+	
+	@Operation(description = "Deleta um problema")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Problema> deleteProblema(@PathVariable(name = "id")UUID id){
 		probService.deleteProblema(id);

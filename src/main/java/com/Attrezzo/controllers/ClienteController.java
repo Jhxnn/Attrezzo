@@ -35,28 +35,38 @@ public class ClienteController {
 	EmailService emailService;
 	
 	@GetMapping
+	@Operation(description = "Lista todos os clientes")
 	public ResponseEntity<List<Cliente>> findAll(){
 		return ResponseEntity.status(HttpStatus.OK).body(clienteService.findAll());
 	}
+	
+	@Operation(description = "Lista cliente pelo ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> findById(@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.OK).body(clienteService.findById(id));
 	}
+	
 	@Operation(description = "Envia um email personalizado ao cliente")
 	@GetMapping("/email")
 	public ResponseEntity<String> emailPersonalizado(@RequestBody EmailDto emailDto){
 		return ResponseEntity.status(HttpStatus.OK).body(emailService.enviarEmailTexto(emailDto.email(), emailDto.assunto(),emailDto.mensagem()));
 		
 	}
+	
+	@Operation(description = "Cria um cliente")
 	@PostMapping
 	public ResponseEntity<Cliente> createCliente(@RequestBody ClienteDto clienteDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.createCliente(clienteDto));
 	}
+	
+	@Operation(description = "Atualiza um cliente")
 	@PutMapping("/{id}")
 	public ResponseEntity<Cliente> updateCliente(@RequestBody ClienteDto clienteDto,
 			@PathVariable(name = "id")UUID id){
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.updateCliente(clienteDto, id));
 	}
+	
+	@Operation(description = "Deleta um cliente")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cliente> deleteCliente(@PathVariable(name = "id")UUID id){
 		clienteService.deleteCliente(id);
