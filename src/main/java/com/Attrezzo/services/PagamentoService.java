@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Attrezzo.dtos.PagamentoDto;
+import com.Attrezzo.models.Cliente;
 import com.Attrezzo.models.Pagamento;
 import com.Attrezzo.repositories.PagamentoRepository;
 import com.itextpdf.io.source.ByteArrayOutputStream;
@@ -40,6 +41,7 @@ public class PagamentoService {
 	public Pagamento createPagamento(PagamentoDto pagDto) {
 		var pagamento = new Pagamento();
 		BeanUtils.copyProperties(pagDto, pagamento);	
+		pagamento.setClienteId(clienteService.findById(pagDto.clienteId()));
 		return pagRepository.save(pagamento);
 	}
 	public byte[] pdfPagamento(LocalDate data) {
@@ -52,7 +54,9 @@ public class PagamentoService {
         List<Pagamento> pagamentos = pagRepository.findByDatas(primeiroDiaMes, ultimoDiaMes);
         for (Pagamento pagamento : pagamentos) {
         	
-			var nomeCliente = pagamento.getClienteId().getNome();
+        	
+        	Cliente cliente = pagamento.getClienteId();
+			var nomeCliente = cliente.getNome();
 			var paragrafoCliente = new Paragraph("Cliente: " + nomeCliente);
 			var paragrafoGasto = new Paragraph("Gasto: " + pagamento.getValor());
 			var paragrafoData = new Paragraph("Data: " + pagamento.getData());
@@ -62,9 +66,10 @@ public class PagamentoService {
 			document.add(paragrafoGasto);
 			document.add(paragrafoData);
 			document.add(paragrafoEspacamento);
-			document.close();
 		}
+        document.close();
         return byteArrayOutputStream.toByteArray();
+        
         
 	}
 	public Pagamento updatePagamento(PagamentoDto pagDto, UUID id) {

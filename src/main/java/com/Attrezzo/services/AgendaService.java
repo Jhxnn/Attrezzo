@@ -40,8 +40,9 @@ public class AgendaService {
 	
 	public Agenda createAgenda(AgendaDto agendaDto) {
 		var agenda = new Agenda();
-		BeanUtils.copyProperties(agendaDto, agenda);
-		Cliente cliente = agenda.getClienteId();
+		agenda.setClienteId(clienteService.findById(agendaDto.clienteId()));
+		agenda.setData(agendaDto.data());
+		Cliente cliente = clienteService.findById(agendaDto.clienteId());
 		emailService.enviarEmailTexto(cliente.getEmail(), "Agendamento" , "Bom dia, " + cliente.getNome()
 		+ " sua vinda ficou marcada para o dia: " + agenda.getData());
 		return agendaRepository.save(agenda);

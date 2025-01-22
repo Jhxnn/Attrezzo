@@ -36,7 +36,9 @@ public class CarroService {
 	}
 	public Carro createCarro(CarroDto carroDto) {
 		var carro = new Carro();
+		var cliente = clienteService.findById(carroDto.clienteId());
 		BeanUtils.copyProperties(carroDto, carro);
+		carro.setClienteId(cliente);
 		return carroRepository.save(carro);
 	}
 	

@@ -1,6 +1,6 @@
 package com.Attrezzo.models;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -21,7 +21,7 @@ public class Agenda {
 	@Column(name = "id")
 	private UUID agendaId;
 	
-	private Timestamp data;
+	private LocalDate data;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
@@ -35,11 +35,11 @@ public class Agenda {
 		this.agendaId = agendaId;
 	}
 
-	public Timestamp getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Timestamp data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

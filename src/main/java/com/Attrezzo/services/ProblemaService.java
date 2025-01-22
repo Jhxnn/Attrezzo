@@ -36,6 +36,7 @@ public class ProblemaService {
 	public Problema createProblema(ProblemaDto problemaDto) {
 		var problema = new Problema();
 		BeanUtils.copyProperties(problemaDto, problema);
+		problema.setPecaUtilizada(pecaService.findById(problemaDto.pecaUtilizada()));
 		return problemaRepository.save(problema);
 	}
 	public Problema updateProblema(ProblemaDto problemaDto, UUID id) {

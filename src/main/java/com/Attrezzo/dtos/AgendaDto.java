@@ -1,8 +1,8 @@
-package com.Attrezzo.dtos;
+	package com.Attrezzo.dtos;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
-public record AgendaDto(Timestamp data, UUID clienteId) {
+public record AgendaDto(LocalDate data, UUID clienteId) {
 
 }
